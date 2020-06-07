@@ -76,12 +76,13 @@ WSGI_APPLICATION = 'graphCoV.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'graphCoV',
-        'USER': 'postgres',
-        'PASSWORD': '';
+        'USER': 'root',
+        'PASSWORD': 'passforMySQL123#',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '3306',
+        'DEFAULT-CHARACTER-SET': 'utf8',
     }
 }
 
