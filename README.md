@@ -33,5 +33,8 @@ pip3 install mysqlclient
 python3 manage.py runserver
 ```
 * Open 'localhost:8000' in a browser window.
-
+* If it works, stop the server and create a superuser:
+```
+python3 manage.py createsuperuser
+```
 
