@@ -7,7 +7,7 @@ A web application to represent COVID 19 patient data as a graph.
 * To map the spread of the disease.
 * To identify clusters of disease spread.
 
-## Dev environment setup
+## Dev environment setup (Ubuntu 20.04 LTS)
 
 * Clone the repository.
 * Install Anaconda.
@@ -17,7 +17,11 @@ A web application to represent COVID 19 patient data as a graph.
 ```
 pip3 install django
 ```
-* [Install mysql.](https://linuxconfig.org/install-mysql-on-ubuntu-20-04-lts-linux) (Don't create a new user.) Set password as 'passforMySQL123#'.
+* [Install MySQL.](https://linuxconfig.org/install-mysql-on-ubuntu-20-04-lts-linux) (Don't create a new user.) Set password as 'passforMySQL123#'.
+* Start MySQL:
+```
+sudo service mysql start
+```
 * Create a database in mysql called 'graphCoV'.
 * Run the following commands:
 ```
