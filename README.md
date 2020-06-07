@@ -24,10 +24,10 @@ pip3 install django
 sudo apt-get install libmysqlclient-dev
 pip3 install mysqlclient
 ```
-* Test server by navigating to the folder with 'manage.py' and running
+* To test your installation, navigate to the folder with 'manage.py' and run
 ```
 python3 manage.py runserver
 ```
-and opening 'localhost:8000' in a browser window.
+* Open 'localhost:8000' in a browser window.
 
 
