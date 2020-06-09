@@ -13,12 +13,14 @@ A web application to represent COVID 19 patient data as a graph.
 * Install Anaconda.
 * [Create a virtual environment using conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 * Activate the virtual environment.
-* Install Django:
+* Install Django, NetworkX and matplotlib:
 ```
 pip3 install django
+pip3 install networkx
+pip3 install matplotlib
 ```
 * [Install MySQL.](https://linuxconfig.org/install-mysql-on-ubuntu-20-04-lts-linux) (Don't create a new user.) Set password as 'passforMySQL123#'.
-* Start MySQL:
+* Start MySQL (Run this each time you restart your computer.):
 ```
 sudo service mysql start
 ```
