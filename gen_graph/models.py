@@ -6,6 +6,9 @@ class Person(models.Model):
 
     p_id = models.CharField(max_length=10, help_text='Patient/Contact ID', primary_key=True)
     tested_positive = models.BooleanField(default=False, help_text='True if person is COVID 19 positive')
+    #district
+    
+
 
     def __str__(self):
         return f'{self.p_id}'

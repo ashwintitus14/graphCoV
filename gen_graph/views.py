@@ -28,10 +28,22 @@ def index(request):
     for link in links:
         G.add_edge(link.person1, link.person2)
 
-    print(G.nodes)
-    print(G.edges)
 
-    print(links, persons)
+    # To convert to JSON
+    from networkx.readwrite import json_graph
+    data1 = json_graph.node_link_data(G)
+    import json
+    s1 = json.dumps(data1)
+    print(s1)
+    # To save JSON data to a file
+    with open('gen_graph/data/graph.json', 'w') as outfile:
+        json.dump(data1, outfile)
+
+
+    #print(G.nodes)
+    #print(G.edges)
+
+    #rint(links, persons)
 
     nx.draw(G, with_labels=True, font_color='white')
     plt.savefig('gen_graph/static/path.png')

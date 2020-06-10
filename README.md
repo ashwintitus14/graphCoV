@@ -7,6 +7,10 @@ A web application to represent COVID 19 patient data as a graph.
 * To map the spread of the disease.
 * To identify clusters of disease spread.
 
+## To do
+* Add user authentication
+* 
+
 ## Dev environment setup (Ubuntu 20.04 LTS)
 
 * Clone the repository.
