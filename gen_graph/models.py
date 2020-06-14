@@ -5,8 +5,34 @@ from django.db import models
 class Person(models.Model):
 
     p_id = models.CharField(max_length=10, help_text='Patient/Contact ID', primary_key=True)
-    tested_positive = models.BooleanField(default=False, help_text='True if person is COVID 19 positive')
-    #district
+    
+    DISTRICT_CHOICES = [
+        ('TVM', 'Thiruvananthapuram'),
+        ('KLM', 'Kollam'),
+        ('PTA', 'Pathanamthitta'),
+        ('ALP', 'Alappuzha'),
+        ('KTM', 'Kottayam'),
+        ('IDK', 'Idukki'),
+        ('EKM', 'Ernakulam'),
+        ('TSR', 'Thrissur'),
+        ('PKD', 'Palakkad'),
+        ('MLPM', 'Malappuram'),
+        ('KKD', 'Kozhikode'),
+        ('WYD', 'Wayanad'),
+        ('KNR', 'Kannur'),
+        ('KSD', 'Kasaragod'),
+        ('Other State', 'Other State'),
+    ]
+    district = models.CharField(max_length=20, choices=DISTRICT_CHOICES)
+    
+    STATUS_CHOICES = [
+        ('Positive', 'Positive'),
+        ('Negative', 'Negative'),
+        ('Awaiting result', 'Awaiting result'),
+        ('Not tested', 'Not tested')
+    ]
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Not tested')
+
     
 
 

@@ -4,10 +4,32 @@ from .models import Person, Link
 import networkx as nx
 import matplotlib.pyplot as plt
 
+from networkx.readwrite import json_graph # To convert graph to JSON and vice versa
+import json
+import os.path
+
 G = nx.Graph()
 
 # Create your views here.
 def index(request):
+    if os.path.exists('gen_graph/data/graph.json') == False:
+        print("File does not exists/Graph not yet generated") # Redirect to page with message, "Graph is empty"
+        return render(request,'not_generated.html')
+    else:
+        H = nx.Graph()
+        plt.clf()
+        with open('gen_graph/data/graph.json') as json_file:
+            data = json.load(json_file)
+        json_file.close()
+        H = json_graph.node_link_graph(data)
+        nx.draw(H, with_labels=True, font_color='white')
+        plt.savefig('gen_graph/static/path.png')
+    
+    return render(request,'index.html')
+        
+
+
+def index1(request):
     """View function for homepage"""
 
     num_persons = Person.objects.all().count()
@@ -38,6 +60,15 @@ def index(request):
     # To save JSON data to a file
     with open('gen_graph/data/graph.json', 'w') as outfile:
         json.dump(data1, outfile)
+    # To read from JSON file to graph object
+    from networkx.readwrite import json_graph
+    import json
+    with open('gen_graph/data/graph.json') as json_file:
+        data = json.load(json_file)
+    H = json_graph.node_link_graph(data)
+    print(H.nodes)
+    print(H.edges)
+
 
 
     #print(G.nodes)
