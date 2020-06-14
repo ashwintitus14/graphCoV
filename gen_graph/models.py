@@ -29,12 +29,10 @@ class Person(models.Model):
         ('Positive', 'Positive'),
         ('Negative', 'Negative'),
         ('Awaiting result', 'Awaiting result'),
-        ('Not tested', 'Not tested')
+        ('Not tested', 'Not tested'),
+        ('Recovered', 'Recovered'),
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Not tested')
-
-    
-
 
     def __str__(self):
         return f'{self.p_id}'
