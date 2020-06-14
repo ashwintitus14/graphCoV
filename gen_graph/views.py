@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.db import models
+from django.http import HttpResponse
 from .models import Person, Link
 
 import networkx as nx
@@ -26,8 +28,34 @@ def index(request):
         plt.savefig('gen_graph/static/path.png')
     
     return render(request,'index.html')
-        
 
+from .forms import PersonForm        
+
+def add(request):
+    if request.method == 'POST':
+        formp = PersonForm(request.POST)
+        if formp.is_valid():
+            formp.save()
+            return render(request, 'graph.html')
+    else:
+        return render(request,'CoVform2.html')
+
+from .forms import LinkForm
+
+def link(request):
+    if request.method == "POST":
+        forml = LinkForm(request.POST)
+        if forml.is_valid():
+            forml.save()
+            return render(request, 'graph.html')
+    else:
+        return render(request,'CoVform3.html')
+
+def contact(request):
+    return render(request,'CoVcontact.html')
+
+def instruction(request):
+    return render(request,'CoVinstruction.html')
 
 def index1(request):
     """View function for homepage"""
