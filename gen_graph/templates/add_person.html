@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Info</title>
+  <link rel="shortcut icon" href="../favicon.ico">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
+  <script src="{% static 'js/modernizr.custom.js' %}"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+
+    /* Add padding to containers */
+    .container {
+      padding: 16px;
+    }
+
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Overwrite default styles of hr */
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+
+    /* Set a style for the submit/register button */
+    .registerbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+      opacity: 1;
+    }
+
+    /* Add a blue text color to links */
+    a {
+      color: dodgerblue;
+    }
+
+    /* Set a grey background color and center the text of the "sign in" section */
+    .signin {
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <ul id="gn-menu" class="gn-menu-main">
+      <li class="gn-trigger">
+        <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+        <nav class="gn-menu-wrapper">
+          <div class="gn-scroller">
+            <ul class="gn-menu">
+              <li class="gn-search-item">
+                <input placeholder="Search" type="search" class="gn-search">
+                <a class="gn-icon gn-icon-search"><span>Search</span></a>
+              </li>
+              <li>
+                <a class="gn-icon gn-icon-pictures" href="{% url 'index' %}">Home</a>
+              <li><a class="gn-icon gn-icon-illustrator" href="{% url 'add_person' %}">Add Info</a></li>
+              <li><a class="gn-icon gn-icon-photoshop" href="{% url 'link' %}">Create Link</a></li>
+      </li>
+      <li>
+        <ul class="gn-submenu">
+          <li><a class="gn-icon gn-icon-help" href="{% url 'instruction' %}">Instructions</a></li>
+          <li><a class="gn-icon gn-icon-article" href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /gn-scroller -->
+  </nav>
+  </li>
+  <li><a href="{% url 'index' %}">graphCov</a></li>
+  <li><a class="codrops-icon codrops-icon-drop" href="https://dashboard.kerala.gov.in/"><span>Visit GoK
+    Dashboard</span></a></li>
+  </ul>
+
+  <br><br><br>
+  <div id="form-wrapper" style="max-width:500px;margin:auto;">
+
+    <form method="POST"> {% csrf_token %}
+      <div class="container">
+        <h1 style="color:silver;"> Add new Person</h1>
+        <p style="color:silver;">Please fill in this form to create new person.</p>
+        <hr>
+
+        <label for="pid" style="color:silver;"><b>Person ID</b></label>
+        {{ form.p_id }}
+        <!--input type="text" placeholder="Enter Person ID" name="pid" id="pid" class="form-control" required--><br>
+
+        <label for="inputDistrict" style="color:silver;"><b>District</b></label>
+        {{ form.district }}
+        <!--select id="inputDistrict" class="form-control">
+            <option selected>Choose...</option>
+            <option>Thiruvananthapuram</option>
+            <option>Kollam</option>
+            <option>Alappuzha</option>
+            <option>Kottayam</option>
+            <option>Idukki </option>
+            <option>Ernakulam</option>
+            <option>Thrissur</option>
+            <option>Palakkad</option>
+            <option>Malappuram</option>
+            <option>Kozhikode</option>
+            <option>Wayanad</option>
+            <option>Kannur</option>
+            <option>Kasaragod</option>
+            </select--><br><br><br>
+
+        <label for="test-check" style="color:silver;"><b>Status</b></label>
+        {{ form.status }}
+        <!--select id="test-check" class="form-control">
+            <option selected>Choose...</option>
+            <option>Positive</option>
+            <option>Negative</option>
+            <option>Recovered</option>
+            <option>Awaiting Result</option>
+            <option>Not tested</option>
+            </select-->
+        <hr>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+
+    </form>
+
+
+    <!--form action="" method="post">
+      {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <input type="submit" value="Submit">
+    </form-->
+  </div>
+
+
+  </div><!-- /container -->
+  <script src="{% static 'js/classie.js' %}"></script>
+  <script src="{% static 'js/gnmenu.js' %}"></script>
+  <script>
+    new gnMenu(document.getElementById('gn-menu'));
+  </script>
+</body>
+
+</html>

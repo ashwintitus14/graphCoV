@@ -40,10 +40,10 @@ def add(request):
             form.save()
             return HttpResponseRedirect(reverse('index'))
         else:
-            return render(request, 'add.html', {'form': form})
+            return render(request, 'add_person.html', {'form': form})
     else:
         form = PersonForm()
-        return render(request,'add.html', {'form': form})
+        return render(request,'add_person.html', {'form': form})
 
 from .forms import LinkForm
 
