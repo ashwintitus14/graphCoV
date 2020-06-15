@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.db import models
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from .models import Person, Link
+from django.urls import reverse
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -33,12 +35,15 @@ from .forms import PersonForm
 
 def add(request):
     if request.method == 'POST':
-        formp = PersonForm(request.POST)
-        if formp.is_valid():
-            formp.save()
-            return render(request, 'graph.html')
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('index'))
+        else:
+            return render(request, 'add.html', {'form': form})
     else:
-        return render(request,'CoVform2.html')
+        form = PersonForm()
+        return render(request,'add.html', {'form': form})
 
 from .forms import LinkForm
 

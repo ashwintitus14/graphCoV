@@ -9,7 +9,8 @@ A web application to represent COVID 19 patient data as a graph.
 
 ## To do
 * Add user authentication
-* 
+* Show "Person added successfully message" after new person is added.
+
 
 ## Dev environment setup (Ubuntu 20.04 LTS)
 

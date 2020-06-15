@@ -100,7 +100,7 @@ a {
 			<br><br><br>
 	<div id="form-wrapper" style="max-width:500px;margin:auto;">	
 		
-		<form action="action_page.php">
+		<!--form method="POST"> {% csrf_token %}
       <div class="container">
         <h1 style="color:silver;"> Add new Person</h1>
         <p style="color:silver;">Please fill in this form to create new person.</p>
@@ -139,10 +139,17 @@ a {
         <hr>
     
       <div class="text-center">
-      <button type="button" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </div>
     </div>
        
+    </form-->
+    <form action="" method="post">
+      {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <input type="submit" value="Submit">
     </form>
 		</div>
       

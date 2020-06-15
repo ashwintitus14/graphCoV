@@ -40,9 +40,10 @@ class Person(models.Model):
 
 class Link(models.Model):
 
-    cid = models.CharField(max_length=10, help_text='Contact ID of person1 and person2', default='0')
+    #cid = models.CharField(max_length=10, help_text='Contact ID of person1 and person2', default='0')
     person1 = models.CharField(max_length=10, help_text='Patient/Contact ID of person 1', default='0')
     person2 = models.CharField(max_length=10, help_text='Patient/Contact ID of person 2', default='0')
 
     def __str__(self):
-        return f'{self.cid}, {self.person1}, {self.person2}'
+        #return f'{self.cid}, {self.person1}, {self.person2}'
+        return f'{self.person1}, {self.person2}'
