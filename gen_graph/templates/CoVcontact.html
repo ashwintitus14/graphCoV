@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Contact</title>
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
+		<script src="{% static 'js/modernizr.custom.js' %}"></script>
+	</head>
+	<body>
+		<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li class="gn-search-item">
+									<input placeholder="Search" type="search" class="gn-search">
+									<a class="gn-icon gn-icon-search"><span>Search</span></a>
+								</li>
+								<li>
+									<a class="gn-icon gn-icon-pictures" href="{% url 'index' %}">Home</a>
+										<li><a class="gn-icon gn-icon-illustrator" href="{% url 'add' %}">Add Info</a></li>
+										<li><a class="gn-icon gn-icon-photoshop" href="{% url 'link' %}">Create Link</a></li>
+								</li>
+								<li>
+									<ul class="gn-submenu">
+										<li><a class="gn-icon gn-icon-help" href="{% url 'instruction' %}">Instructions</a></li>
+										<li><a class="gn-icon gn-icon-article" href="{% url 'contact' %}">Contact</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<li><a href="http:">graphCov</a></li>
+				<li><a class="codrops-icon codrops-icon-drop" href="http:"><span>Visit Govt Covid Website</span></a></li>
+			</ul>
+			<header>
+				<h1>Contact Us:<span> Add contacts here</span></h1>	
+			</header> 
+		</div><!-- /container -->
+		<script src="{% static 'js/classie.js' %}"></script>
+		<script src="{% static 'js/gnmenu.js' %}"></script>
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+	</body>
+</html>

@@ -22,6 +22,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('gen_graph/', include('gen_graph.urls')),
+    path('gen_graph/', include('gen_graph.urls'),),
     path('', RedirectView.as_view(url='gen_graph/', permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
