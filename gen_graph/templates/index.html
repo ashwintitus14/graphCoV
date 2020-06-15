@@ -10,6 +10,22 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
 	<script src="{% static 'js/modernizr.custom.js' %}"></script>
+	<style>
+		.center {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 50%;
+		}
+		h1 {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 50%;
+			color:white;
+			text-align: center;
+		}
+	</style>
 </head>
 
 <body>
@@ -43,15 +59,23 @@
 	<li><a class="codrops-icon codrops-icon-drop" href="https://dashboard.kerala.gov.in/"><span>Visit GoK
 				Dashboard</span></a></li>
 	</ul>
-	<header>
+	<!--header>
 		<h1>GraphCov</h1>
-	</header>
+	</header-->
 	</div><!-- /container -->
 	<script src="{% static 'js/classie.js' %}"></script>
 	<script src="{% static 'js/gnmenu.js' %}"></script>
 	<script>
 		new gnMenu(document.getElementById('gn-menu'));
 	</script>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h1>Graph of COVID 19 patients and their contacts</h1>
+	<img class="center" alt="graph" src = "{% static 'path.png' %}">
 </body>
 
 </html>

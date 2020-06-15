@@ -26,7 +26,7 @@ def index(request):
             data = json.load(json_file)
         json_file.close()
         H = json_graph.node_link_graph(data)
-        nx.draw(H, with_labels=True, font_color='white')
+        nx.draw(H, with_labels=True, font_color='white', node_color='green', font_size=7, node_size=350)
         plt.savefig('gen_graph/static/path.png')
     
     return render(request,'index.html')
@@ -38,6 +38,28 @@ def add(request):
         form = PersonForm(request.POST)
         if form.is_valid():
             form.save()
+            links = Link.objects.all()
+            persons = Person.objects.all()
+            
+            plt.clf() # Clears the plot
+            for person in persons:
+                G.add_node(person.p_id)
+            
+            for link in links:
+                G.add_edge(link.person1, link.person2)
+
+
+            # To convert to JSON
+            from networkx.readwrite import json_graph
+            data1 = json_graph.node_link_data(G)
+            import json
+            s1 = json.dumps(data1)
+            # To save JSON data to a file
+            with open('gen_graph/data/graph.json', 'w') as outfile:
+                json.dump(data1, outfile)
+
+
+
             return HttpResponseRedirect(reverse('index'))
         else:
             return render(request, 'add_person.html', {'form': form})
@@ -52,6 +74,27 @@ def link(request):
         form = LinkForm(request.POST)
         if form.is_valid():
             form.save()
+
+            links = Link.objects.all()
+            persons = Person.objects.all()
+            
+            plt.clf() # Clears the plot
+            for person in persons:
+                G.add_node(person.p_id)
+            
+            for link in links:
+                G.add_edge(link.person1, link.person2)
+
+
+            # To convert to JSON
+            from networkx.readwrite import json_graph
+            data1 = json_graph.node_link_data(G)
+            import json
+            s1 = json.dumps(data1)
+            # To save JSON data to a file
+            with open('gen_graph/data/graph.json', 'w') as outfile:
+                json.dump(data1, outfile)
+
             return HttpResponseRedirect(reverse('index'))
         else:
             return render(request,'add_link.html', {'form': form})
