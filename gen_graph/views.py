@@ -43,18 +43,22 @@ def add(request):
             return render(request, 'add_person.html', {'form': form})
     else:
         form = PersonForm()
-        return render(request,'add_person.html', {'form': form})
+        return render(request, 'add_person.html', {'form': form})
 
 from .forms import LinkForm
 
 def link(request):
     if request.method == "POST":
-        forml = LinkForm(request.POST)
-        if forml.is_valid():
-            forml.save()
-            return render(request, 'graph.html')
+        form = LinkForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('index'))
+        else:
+            return render(request,'add_link.html', {'form': form})
     else:
-        return render(request,'CoVform3.html')
+        form = LinkForm()
+        return render(request, 'add_link.html', {'form': form} )
+
 
 def contact(request):
     return render(request,'CoVcontact.html')
