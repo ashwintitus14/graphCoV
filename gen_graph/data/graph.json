@@ -1,1 +1,1 @@
-{"directed": false, "multigraph": false, "graph": {}, "nodes": [{"status": "Negative", "id": "P1"}, {"status": "Awaiting result", "id": "P2"}], "links": [{"source": "P1", "target": "P2"}]}
+{"directed": false, "multigraph": false, "graph": {}, "nodes": [{"status": "Negative", "id": "P1"}, {"status": "Awaiting result", "id": "P2"}, {"status": "Positive", "id": "P3"}, {"status": "Awaiting result", "id": "P4"}, {"status": "Not tested", "id": "P5"}, {"status": "Recovered", "id": "P6"}], "links": [{"source": "P1", "target": "P2"}, {"source": "P1", "target": "P3"}]}

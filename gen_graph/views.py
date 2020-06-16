@@ -27,7 +27,23 @@ def index(request):
             data = json.load(json_file)
         json_file.close()
         H = json_graph.node_link_graph(data)
-        nx.draw(H, with_labels=True, font_color='white', node_color='green', font_size=7, node_size=350)
+        print(H)
+        
+        color_map = []
+        for node in H:
+            if H.nodes[node]['status'] == 'Positive':
+                color_map.append('red')
+            elif H.nodes[node]['status'] == 'Negative':
+                color_map.append('green')
+            elif H.nodes[node]['status'] == 'Awaiting result':
+                color_map.append('blue')
+            elif H.nodes[node]['status'] == 'Not tested':
+                color_map.append('grey')
+            elif H.nodes[node]['status'] == 'Recovered':
+                color_map.append('purple')
+            
+
+        nx.draw(H, with_labels=True, font_color='white', font_size=7, node_size=350, node_color=color_map)
         plt.savefig('gen_graph/static/path.png')
     
     return render(request,'index.html')
