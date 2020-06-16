@@ -2,6 +2,7 @@ import json
 import os.path
 
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 import networkx as nx
 from django.db import models
 from django.http import HttpResponse, HttpResponseRedirect
@@ -41,12 +42,27 @@ def index(request):
                 color_map.append('grey')
             elif H.nodes[node]['status'] == 'Recovered':
                 color_map.append('purple')
-            
-
+        num_disconnected_subgraphs = 0 # Number of disconnected subgraphs in the graph
+        for c in nx.connected_components(H):
+            num_disconnected_subgraphs+=1
+        
+        #To draw a legend for the graph
+        """
+        p1 = mpatches.Patch(color='red', label='Positive')
+        p2 = mpatches.Patch(color='green', label='Negative')
+        p3 = mpatches.Patch(color='blue', label='Awaiting result')
+        p4 = mpatches.Patch(color='grey', label='Not tested')
+        p5 = mpatches.Patch(color='purple', label='Recovered')
+        plt.legend(handles=[p1,p2,p3,p4,p5], loc=(0.80,0.80))
+        """
         nx.draw(H, with_labels=True, font_color='white', font_size=7, node_size=350, node_color=color_map)
-        plt.savefig('gen_graph/static/path.png')
+        plt.savefig('gen_graph/static/path.png', dpi=200)
+
+        context = {
+            'num_disconnected_subgraphs' : num_disconnected_subgraphs
+        }
     
-    return render(request,'index.html')
+    return render(request,'index.html', context=context)
 
 
 def add(request):

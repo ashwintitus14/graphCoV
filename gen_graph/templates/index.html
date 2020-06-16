@@ -15,9 +15,17 @@
 			display: block;
 			margin-left: auto;
 			margin-right: auto;
-			width: 50%;
+			width: 640px;
+			height: 480px;
 		}
-		h1 {
+		.center1 {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 140px;
+			height: 100px;
+		}
+		h1, h4 {
 			display: block;
 			margin-left: auto;
 			margin-right: auto;
@@ -72,10 +80,14 @@
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
 	<h1>Graph of COVID 19 patients and their contacts</h1>
+	<h4>Number of disconnected subgraphs (individual clusters): {{ num_disconnected_subgraphs }}</h4>
+	<img class="center1" src = "{% static 'images/legend.png' %} ">
+	<br>
 	<img class="center" alt="graph" src = "{% static 'path.png' %}">
+
+	
+
 </body>
 
 </html>

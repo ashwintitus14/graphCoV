@@ -13,7 +13,7 @@ A web application to represent COVID 19 patient data as a graph.
 * Add update person details functionality.
 * When node is added with same name as existing node, return appropriate message.
 * When link is added, check if nodes exist.
-* Add different colors for nodes based on status.
+* ~~Add different colors for nodes based on status.~~
 * Make graph interactive using d3.
 
 ## Issues
