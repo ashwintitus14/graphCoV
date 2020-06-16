@@ -1,23 +1,24 @@
-from django.shortcuts import render
-from django.db import models
-from django.http import HttpResponse
-from django.http import HttpResponseRedirect
-from .models import Person, Link
-from django.urls import reverse
-
-import networkx as nx
-import matplotlib.pyplot as plt
-
-from networkx.readwrite import json_graph # To convert graph to JSON and vice versa
 import json
 import os.path
+
+import matplotlib.pyplot as plt
+import networkx as nx
+from django.db import models
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
+from networkx.readwrite import json_graph  # To convert graph to JSON and vice versa
+
+from .forms import LinkForm, PersonForm
+from .models import Link, Person
 
 G = nx.Graph()
 
 # Create your views here.
 def index(request):
+    """Reads data from graph.json, renders image of the graph and displays it in the homepage."""
     if os.path.exists('gen_graph/data/graph.json') == False:
-        print("File does not exists/Graph not yet generated") # Redirect to page with message, "Graph is empty"
+        #print("File does not exists/Graph not yet generated")
         return render(request,'not_generated.html')
     else:
         H = nx.Graph()
@@ -31,28 +32,29 @@ def index(request):
     
     return render(request,'index.html')
 
-from .forms import PersonForm        
 
 def add(request):
     if request.method == 'POST':
         form = PersonForm(request.POST)
         if form.is_valid():
             form.save()
+
+            G = nx.Graph()
             links = Link.objects.all()
             persons = Person.objects.all()
             
             plt.clf() # Clears the plot
             for person in persons:
-                G.add_node(person.p_id)
+                G.add_node(person.p_id, status=person.status)
             
             for link in links:
                 G.add_edge(link.person1, link.person2)
 
 
             # To convert to JSON
-            from networkx.readwrite import json_graph
+            #from networkx.readwrite import json_graph
             data1 = json_graph.node_link_data(G)
-            import json
+            #import json
             s1 = json.dumps(data1)
             # To save JSON data to a file
             with open('gen_graph/data/graph.json', 'w') as outfile:
@@ -67,29 +69,28 @@ def add(request):
         form = PersonForm()
         return render(request, 'add_person.html', {'form': form})
 
-from .forms import LinkForm
 
 def link(request):
     if request.method == "POST":
         form = LinkForm(request.POST)
         if form.is_valid():
             form.save()
-
+            G = nx.Graph()
             links = Link.objects.all()
             persons = Person.objects.all()
             
             plt.clf() # Clears the plot
             for person in persons:
-                G.add_node(person.p_id)
+                G.add_node(person.p_id, status=person.status)
             
             for link in links:
                 G.add_edge(link.person1, link.person2)
 
 
             # To convert to JSON
-            from networkx.readwrite import json_graph
+            #from networkx.readwrite import json_graph
             data1 = json_graph.node_link_data(G)
-            import json
+            #import json
             s1 = json.dumps(data1)
             # To save JSON data to a file
             with open('gen_graph/data/graph.json', 'w') as outfile:
@@ -108,9 +109,9 @@ def contact(request):
 
 def instruction(request):
     return render(request,'CoVinstruction.html')
-
+"""
 def index1(request):
-    """View function for homepage"""
+    #View function for homepage
 
     num_persons = Person.objects.all().count()
     num_links = Link.objects.all().count()
@@ -162,6 +163,7 @@ def index1(request):
     return render(request, 'index.html', context=context)
 
 def show_graph(request):
-    """View function for graph display page"""
+    #View function for graph display page
 
     return render(request, 'graph.html')
+"""

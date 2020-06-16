@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-    <head>
-        <title>graphCoV</title>
-    </head>
 
-    <body>
-        <h2>No data has been added and the graph has not been generated. Please add some data first.</h2>
-        <!-- <p><a href="{% url 'index' %}">Add some data</a></p> -->
-    </body>
+<head>
+    <title>graphCoV</title>
+</head>
+
+<body>
+    <h2>graph.json is missing.</h2>
+    <ul>Possible reasons:
+        <li>No data has been added and the graph has not been generated. Please add some data first.</li>
+        <li>graph.json got deleted.</li>
+    </ul>
+    <p><a href="{% url 'add_person' %}">Add some data</a></p>
+</body>
+
 </html>
