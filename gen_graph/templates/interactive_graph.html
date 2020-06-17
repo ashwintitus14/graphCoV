@@ -1,0 +1,143 @@
+<!-- Code borrowed from : https://tomroth.com.au/d3/#force-graphs -->
+{% load static %}
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    .links line {
+        stroke: #999;
+        stroke-opacity: 0.6;
+    }
+
+    .nodes circle {
+        stroke: #fff;
+        stroke-width: 1.5px;
+    }
+
+    .nodes text {
+        font-size: 10px;
+        font-family: sans-serif;
+        color: black;
+    }
+
+    .center1 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 140px;
+        height: 100px;
+    }
+    .center {
+        display: block;
+        margin: auto;
+    }
+</style>
+<a href="{% url 'index' %}">Go back to Homepage</a>
+<img class="center1" src="{% static 'images/legend.png' %} ">
+<svg class="center" width="960" height="600"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+    var svg = d3.select("svg"),
+        width = +svg.attr("width"),
+        height = +svg.attr("height");
+
+    d3.json("{% static 'graph.json' %}", function (error, graph) {
+        console.log(graph.links);
+
+        //nodes from graph.nodes
+        //links from graph.links
+
+        var simulation = d3.forceSimulation()
+            .nodes(graph.nodes);
+
+        simulation
+            .force("charge_force", d3.forceManyBody())
+            .force("center_force", d3.forceCenter(width / 2, height / 2));
+
+
+
+        radius = 20;
+
+        function tickActions() {
+            node
+                .attr("cx", function (d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+                .attr("cy", function (d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)) });
+
+            link
+                .attr("x1", function (d) { return d.source.x; })
+                .attr("y1", function (d) { return d.source.y; })
+                .attr("x2", function (d) { return d.target.x; })
+                .attr("y2", function (d) { return d.target.y; });
+        }
+
+        simulation.on("tick", tickActions);
+
+        var link_force = d3.forceLink(graph.links)
+            .id(function (d) { return d.id; })
+
+        simulation.force("links", link_force)
+
+        var link = svg.append("g")
+            .attr("class", "links")
+            .selectAll("line")
+            .data(graph.links)
+            .enter()
+            .append("line")
+            .attr("stroke-width", 4);
+
+        var node = svg.append("g")
+            .attr("class", "nodes")
+            .selectAll("circle")
+            .data(graph.nodes)
+            .enter()
+            .append("circle")
+            .attr("r", 10)
+            .attr("fill", nodeColour);
+
+        function nodeColour(d) {
+            if (d.status == "Positive") {
+                return "red";
+            }
+            else if (d.status == "Negative") {
+                return "green";
+            }
+            else if (d.status == "Awaiting result") {
+                return "blue";
+            }
+            else if (d.status == "Not tested") {
+                return "grey";
+            }
+            else if (d.status == "Recovered") {
+                return "purple";
+            }
+        }
+
+        var drag_handler = d3.drag()
+            .on("start", drag_start)
+            .on("drag", drag_drag)
+            .on("end", drag_end);
+
+        function drag_start(d) {
+            if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function drag_drag(d) {
+            d.fx = d3.event.x;
+            d.fy = d3.event.y;
+        }
+
+        function drag_end(d) {
+            if (!d3.event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+
+        drag_handler(node);
+
+        node.append("text")
+            .attr("x", 6)
+            .attr("y", 3)
+            .text(function (d) { return d.id; });
+    });
+</script>

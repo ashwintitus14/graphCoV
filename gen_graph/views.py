@@ -103,6 +103,8 @@ def add(request):
             # To save JSON data to a file
             with open('gen_graph/data/graph.json', 'w') as outfile:
                 json.dump(data1, outfile)
+            with open('gen_graph/static/graph.json', 'w') as outfile: #For interactive graph page
+                json.dump(data1, outfile)
 
 
 
@@ -139,6 +141,8 @@ def link(request):
             # To save JSON data to a file
             with open('gen_graph/data/graph.json', 'w') as outfile:
                 json.dump(data1, outfile)
+            with open('gen_graph/static/graph.json', 'w') as outfile: # For interactive graph page
+                json.dump(data1, outfile)
 
             return HttpResponseRedirect(reverse('index'))
         else:
@@ -147,12 +151,14 @@ def link(request):
         form = LinkForm()
         return render(request, 'add_link.html', {'form': form} )
 
+def interactive(request):
+    return render(request, 'interactive_graph.html')
 
 def contact(request):
-    return render(request,'CoVcontact.html')
+    return render(request,'contact.html')
 
-def instruction(request):
-    return render(request,'CoVinstruction.html')
+def instructions(request):
+    return render(request,'instructions.html')
 """
 def index1(request):
     #View function for homepage

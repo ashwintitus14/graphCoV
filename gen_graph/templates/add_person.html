@@ -85,15 +85,13 @@
                 <a class="gn-icon gn-icon-search"><span>Search</span></a>
               </li>
               <li>
-                <a class="gn-icon gn-icon-pictures" href="{% url 'index' %}">Home</a>
+                <a class="gn-icon gn-icon-pictures" href="{% url 'interactive' %}">Interactive Graph</a>
               <li><a class="gn-icon gn-icon-illustrator" href="{% url 'add_person' %}">Add Person</a></li>
               <li><a class="gn-icon gn-icon-photoshop" href="{% url 'add_link' %}">Create Link</a></li>
-      </li>
+              <li><a class="gn-icon gn-icon-help" href="{% url 'instructions' %}">Instructions</a></li>
+              <li><a class="gn-icon gn-icon-article" href="{% url 'contact' %}">Contact</a></li>
+            </li>
       <li>
-        <ul class="gn-submenu">
-          <li><a class="gn-icon gn-icon-help" href="{% url 'instruction' %}">Instructions</a></li>
-          <li><a class="gn-icon gn-icon-article" href="{% url 'contact' %}">Contact</a></li>
-        </ul>
       </li>
     </ul>
   </div><!-- /gn-scroller -->

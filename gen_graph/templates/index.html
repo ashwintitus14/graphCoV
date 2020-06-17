@@ -18,6 +18,7 @@
 			width: 800px;
 			height: 600px;
 		}
+
 		.center1 {
 			display: block;
 			margin-left: auto;
@@ -25,12 +26,14 @@
 			width: 140px;
 			height: 100px;
 		}
-		h1, h4 {
+
+		h1,
+		h4 {
 			display: block;
 			margin-left: auto;
 			margin-right: auto;
 			width: 50%;
-			color:white;
+			color: white;
 			text-align: center;
 		}
 	</style>
@@ -49,15 +52,11 @@
 								<a class="gn-icon gn-icon-search"><span>Search</span></a>
 							</li>
 							<li>
-								<a class="gn-icon gn-icon-pictures" href="{% url 'index' %}">Home</a>
+								<a class="gn-icon gn-icon-pictures" href="{% url 'interactive' %}">Interactive Graph</a>
 							<li><a class="gn-icon gn-icon-download" href="{% url 'add_person' %}">Add Person</a></li>
 							<li><a class="gn-icon gn-icon-archive" href="{% url 'add_link' %}">Create Link</a></li>
-			</li>
-			<li>
-				<ul class="gn-submenu">
-					<li><a class="gn-icon gn-icon-help" href="{% url 'instruction' %}">Instructions</a></li>
-					<li><a class="gn-icon gn-icon-article" href="{% url 'contact' %}">Contact</a></li>
-				</ul>
+							<li><a class="gn-icon gn-icon-help" href="{% url 'instructions' %}">Instructions</a></li>
+							<li><a class="gn-icon gn-icon-article" href="{% url 'contact' %}">Contact</a></li>
 			</li>
 		</ul>
 	</div><!-- /gn-scroller -->
@@ -76,17 +75,17 @@
 	<script>
 		new gnMenu(document.getElementById('gn-menu'));
 	</script>
-	
+
 	<br>
 	<br>
 	<br>
 	<h1>Graph of COVID 19 Patients and their Contacts</h1>
 	<h4>Number of disconnected subgraphs (individual clusters): {{ num_disconnected_subgraphs }}</h4>
-	<img class="center1" src = "{% static 'images/legend.png' %} ">
+	<img class="center1" src="{% static 'images/legend.png' %} ">
 	<br>
-	<img class="center" alt="graph" src = "{% static 'path.png' %}">
+	<img class="center" alt="graph" src="{% static 'path.png' %}">
 
-	
+
 
 </body>
 
