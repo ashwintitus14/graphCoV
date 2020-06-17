@@ -22,6 +22,7 @@ def index(request):
         #print("File does not exists/Graph not yet generated")
         return render(request,'not_generated.html')
     else:
+        """
         H = nx.Graph()
         plt.clf()
         with open('gen_graph/data/graph.json') as json_file:
@@ -29,6 +30,17 @@ def index(request):
         json_file.close()
         H = json_graph.node_link_graph(data)
         print(H)
+        """
+        H = nx.Graph()
+        links = Link.objects.all()
+        persons = Person.objects.all()
+        
+        plt.clf() # Clears the plot
+        for person in persons:
+            H.add_node(person.p_id, status=person.status)
+        
+        for link in links:
+            H.add_edge(link.person1, link.person2)
         
         color_map = []
         for node in H:
@@ -56,7 +68,7 @@ def index(request):
         plt.legend(handles=[p1,p2,p3,p4,p5], loc=(0.80,0.80))
         """
         nx.draw(H, with_labels=True, font_color='white', font_size=7, node_size=350, node_color=color_map)
-        plt.savefig('gen_graph/static/path.png', dpi=200)
+        plt.savefig('gen_graph/static/path.png', dpi=150)
 
         context = {
             'num_disconnected_subgraphs' : num_disconnected_subgraphs

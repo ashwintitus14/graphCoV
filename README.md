@@ -15,10 +15,12 @@ A web application to represent COVID 19 patient data as a graph.
 * When link is added, check if nodes exist.
 * ~~Add different colors for nodes based on status.~~
 * Make graph interactive using d3.
+* Use selection box for create link fields.
 
 ## Issues
 * Add appropriate icons
 * Updating using admin panel does not update the json file, only the database.
+* Links have to be deleted when a node is deleted through Django admin.
 
 
 
