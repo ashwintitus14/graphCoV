@@ -1,6 +1,6 @@
 # graphCoV
 
-A web application to represent COVID 19 patient data as a graph.
+A web application to represent COVID 19 patient and contact data as a graph.
 
 ## Objectives
 
