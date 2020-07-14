@@ -8,6 +8,12 @@ A web application to represent COVID 19 patient and contact data as a graph.
 * To identify clusters of disease spread.
 
 ## To do
+* Differently shaped nodes for import and contact cases.
+* A graph each for each district.
+* Details of a case should be visible on hovering over the node. No need of name. Age, gender, local body/panchayat. Train/flight details if person is a traveler.
+* Input from Excel file to generate graph.
+* Plot graph on an interactive map.
+* --
 * Add user authentication
 * Show "Person added successfully message" after new person is added.
 * Add update person details functionality.
